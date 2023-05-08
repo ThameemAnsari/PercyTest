@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button  color="light">Back</ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Driver's Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let item of driverData">
+    <ion-card-header *ngIf="item.driverName">
+      <ion-card-title>{{item.driverName}} <ion-button style="
+        /* text-align: right; */
+        float: right;
+    " *ngIf="item.driverName">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button></ion-card-title>
+    
+
+
+    </ion-card-header>
+   
+    <ion-grid *ngIf="item.driverName">
+      <ion-row>
+        <ion-col><ion-label color="primary">AADHAR Number</ion-label></ion-col>
+        <ion-col><ion-label color="primary" style="font-size: medium;">{{item.AADHARCard}}</ion-label></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><ion-label color="primary">Liasnace Number</ion-label></ion-col>
+        <ion-col><ion-label color="primary" style="font-size: medium;">{{item.Liasnace}}</ion-label></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><ion-label color="primary">Phone Number</ion-label></ion-col>
+        <ion-col><ion-label color="primary" style="font-size: medium;">{{item.phoneNumber}}</ion-label></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><ion-label color="primary">PhonePay Number</ion-label></ion-col>
+        <ion-col><ion-label color="primary" style="font-size: medium;">{{item.PhonePay}}</ion-label></ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col><ion-label color="primary">Paid Amount Unit now</ion-label></ion-col>
+        <ion-col><ion-label color="primary" style="font-size: medium;">{{item.TotalPaid}}</ion-label></ion-col>
+      </ion-row> -->
+    </ion-grid>
+    <ion-grid *ngIf="item.driverName">
+      <ion-row>
+        <ion-button (click)="payingMoney(item.phoneNumber,item.phoneNumber)" id="open-modal{{item.phoneNumber}}">
+          <ion-icon name="card-outline"></ion-icon>
+          Paying Money 
+        </ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)="payingInfo(item.phoneNumber)" id="open-two{{item.phoneNumber}}">
+          <ion-icon name="card-outline"></ion-icon>
+          Paying Info 
+        </ion-button>
+      </ion-row>
+    </ion-grid>
+
+
+   
+    
+
+
+  
+  </ion-card>
+
+  <ion-modal #modal trigger="{{selectedID}}" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Select Date & Amount</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list lines="none">
+          <ion-item>
+            <ion-datetime [(ngModel)]="myDate"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-item>
+              <ion-input [(ngModel)]="amount" type="number" placeholder="Please Enter Amount"></ion-input>
+            </ion-item>
+          </ion-item>
+          <ion-item>
+            <!-- <ion-button  style="
+  padding-left: 10px;
+  margin-top: 10px;--background: #2dd36f;
+    color: #000000;
+" (click)="save()">
+<ion-icon name="document-attach-outline"></ion-icon>
+    Save 
+  </ion-button> -->
+  <ion-button style="
+  padding-left: 10px;
+  margin-top: 10px;--background: #2dd36f;
+    color: #000000;
+" expand="full" (click)="save()"><ion-icon name="bookmark-outline"></ion-icon>Save</ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal #modals trigger="{{moneySelectId}}" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Amount and Dates</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeDemo()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list lines="none" *ngFor="let item of amountIinfo">
+          <ion-item>
+            <ion-grid *ngIf="item.paymentDate">
+              <ion-row>
+                <ion-col><ion-label color="primary">Money Sent Date</ion-label></ion-col>
+                <ion-col><ion-label color="primary" style="font-size: medium;">{{item.paymentDate}}</ion-label></ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col><ion-label color="primary">Amount</ion-label></ion-col>
+                <ion-col><ion-label color="primary" style="font-size: medium;">{{item.paymentAmount}}</ion-label></ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

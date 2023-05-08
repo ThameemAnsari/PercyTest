@@ -1,0 +1,58 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>driverReg</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button  color="light">Back</ion-back-button>
+    </ion-buttons>
+    <ion-title color="light">Driver Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-item>
+    <ion-label position="floating">Driver Name</ion-label>
+    <ion-input type="text" data-cy="driverName" [(ngModel)]="username" name="username"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">AADHAR Card</ion-label>
+    <ion-input type="text" data-cy="aadharCard" [(ngModel)]="aadhar" (ionChange)="changeAadhar()" name="aadhar" minimum="12" maxlength="12"></ion-input>
+   
+  </ion-item>
+  <ion-label *ngIf="msginputvalue" color="danger" style="padding-left: 15px;">AADHAR Must be between 12 digits</ion-label>
+
+  <ion-item>
+    <ion-label position="floating">Driving Liasnace</ion-label>
+    <ion-input type="text" data-cy="DrivingLiasnace" [(ngModel)]="Liasnace" (ionChange)="changeLiasnace()" name="Liasnace" maxlength="15" maxlength="15"></ion-input>
+  </ion-item>
+  <ion-label *ngIf="liasnaceInputvalue" color="danger" style="padding-left: 15px;">Liasnace Must be between 15 digits</ion-label>
+  <ion-item>
+    <ion-label position="floating">Cantact Cell No</ion-label>
+    <ion-input type="tel" data-cy="ContactCell" [(ngModel)]="phoneNumber" (ionChange)="changePhoneNumber()" maxlength="10" maxlength="10"></ion-input>
+  </ion-item>
+  <ion-label *ngIf="phoneNumberInputvalue" color="danger" style="padding-left: 15px;">Phone Number Must be between 10 digits</ion-label>
+  
+  <ion-item>
+    <ion-label position="floating">Phone Pay No</ion-label>
+    <ion-input type="tel" data-cy="phonePayNo" [(ngModel)]="phonePay" (ionChange)="changePhonePay()" maxlength="10" maxlength="10"></ion-input>
+  </ion-item>
+
+
+  <ion-label *ngIf="phonePeInputvalue" color="danger" style="padding-left: 15px;">Phone Pe Number Must be between 10 digits</ion-label>
+
+  <!-- <ion-button expand="full" (click)="register()">Register</ion-button> -->
+
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-button expand="full" data-cy="Register" (click)="register()">Register</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> 
+
+</ion-content>

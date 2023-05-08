@@ -1,0 +1,7 @@
+{
+  "name": "myTruck",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
